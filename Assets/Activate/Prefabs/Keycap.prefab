@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5622952363910623606}
   m_Layer: 0
   m_Name: Keycap
-  m_TagString: Untagged
+  m_TagString: keycap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84de654643dc3f46bdc1e774b8b894b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Offset: 0.5
 --- !u!65 &5316133209626868185
 BoxCollider:
   m_ObjectHideFlags: 0
