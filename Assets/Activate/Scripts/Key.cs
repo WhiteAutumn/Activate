@@ -7,14 +7,14 @@ public class Key : MonoBehaviour
 	public string Signal;
 	public List<GameObject> KeyListeners;
 	
-	List<KeyListener> passiveListeners;
+	List<IPassiveKeyListener> passiveListeners;
 	List<IActiveKeyListener> activeKeyListeners;
 	Transform keyTransform;
 	bool toggleable = true;
 
 	void OnValidate()
 	{
-		passiveListeners = new List<KeyListener>();
+		passiveListeners = new List<IPassiveKeyListener>();
 		activeKeyListeners = new List<IActiveKeyListener>();
 		
 		foreach (Transform child in transform)
@@ -31,7 +31,7 @@ public class Key : MonoBehaviour
 			{
 				foreach (Component component in listener.GetComponents<Component>())
 				{
-					if (component is KeyListener passiveListener)
+					if (component is IPassiveKeyListener passiveListener)
 					{
 						passiveListeners.Add(passiveListener);
 					}
@@ -50,7 +50,7 @@ public class Key : MonoBehaviour
 		{
 			toggleable = false;
 			
-			foreach (KeyListener listener in passiveListeners)
+			foreach (IPassiveKeyListener listener in passiveListeners)
 			{
 				listener.OnKeyDown(Signal);
 			}
