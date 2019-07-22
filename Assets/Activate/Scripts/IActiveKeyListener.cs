@@ -1,4 +1,6 @@
-﻿public interface IActiveKeyListener
+﻿using UnityEngine;
+
+public interface IActiveKeyListener
 {
-	void OnKeyUpdate(string signal, float value);
+	void OnKeyUpdate(GameObject source, string signal, float value);
 }

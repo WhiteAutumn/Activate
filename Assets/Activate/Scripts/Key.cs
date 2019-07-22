@@ -52,7 +52,7 @@ public class Key : MonoBehaviour
 			
 			foreach (IPassiveKeyListener listener in passiveListeners)
 			{
-				listener.OnKeyDown(Signal);
+				listener.OnKeyDown(gameObject, Signal);
 			}
 		}
 		else if (!toggleable && keyTransform.localPosition.y > -ActivationThreshold)
@@ -62,7 +62,7 @@ public class Key : MonoBehaviour
 
 		foreach (IActiveKeyListener listener in activeKeyListeners)
 		{
-			listener.OnKeyUpdate(Signal, -keyTransform.localPosition.y);
+			listener.OnKeyUpdate(gameObject, Signal, -keyTransform.localPosition.y);
 		}
 	}
 }

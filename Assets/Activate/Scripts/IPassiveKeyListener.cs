@@ -1,4 +1,6 @@
-﻿public interface IPassiveKeyListener
+﻿using UnityEngine;
+
+public interface IPassiveKeyListener
 {
-	void OnKeyDown(string signal);
+	void OnKeyDown(GameObject source, string signal);
 }

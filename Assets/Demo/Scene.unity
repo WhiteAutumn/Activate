@@ -656,12 +656,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1730510412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4308082281358054946, guid: 04e73572ef3a38a459a36627314b3b8f,
-    type: 3}
-  m_PrefabInstance: {fileID: 8410955992515041133}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1790179554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,7 +1095,7 @@ PrefabInstance:
     - target: {fileID: 117463173960489571, guid: 04e73572ef3a38a459a36627314b3b8f,
         type: 3}
       propertyPath: KeyListeners.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117463173960489571, guid: 04e73572ef3a38a459a36627314b3b8f,
         type: 3}
@@ -1117,7 +1111,7 @@ PrefabInstance:
         type: 3}
       propertyPath: KeyListeners.Array.data[1]
       value: 
-      objectReference: {fileID: 1730510412}
+      objectReference: {fileID: 0}
     - target: {fileID: 5226437901307635548, guid: 04e73572ef3a38a459a36627314b3b8f,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
