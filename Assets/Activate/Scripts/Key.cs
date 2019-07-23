@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Key : MonoBehaviour
@@ -44,7 +45,7 @@ public class Key : MonoBehaviour
 		}
 	}
 
-	public void FixedUpdate()
+	public void Update()
 	{
 		if (toggleable && keyTransform.localPosition.y < -ActivationThreshold)
 		{
@@ -59,7 +60,10 @@ public class Key : MonoBehaviour
 		{
 			toggleable = true;
 		}
+	}
 
+	public void FixedUpdate()
+	{
 		foreach (IActiveKeyListener listener in activeKeyListeners)
 		{
 			listener.OnKeyUpdate(gameObject, Signal, -keyTransform.localPosition.y);
