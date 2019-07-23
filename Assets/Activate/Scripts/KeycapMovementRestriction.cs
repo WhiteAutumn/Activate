@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class KeyMovementRestriction : MonoBehaviour
+public class KeycapMovementRestriction : MonoBehaviour
 {
     Transform ourTransform;
     Rigidbody ourRigidbody;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class KeyCollisionValidator : MonoBehaviour
+public class KeycapCollisionValidator : MonoBehaviour
 {
     Transform ourTransform;
     SphereCollider ourCollider;
@@ -62,13 +62,13 @@ public class KeyCollisionValidator : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("keycap"))
                     {
-                        KeyCollider keyCollider = hit.collider.gameObject.GetComponent<KeyCollider>();
-                        Transform keyTransform = keyCollider.transform;
+                        KeycapCollider keycapCollider = hit.collider.gameObject.GetComponent<KeycapCollider>();
+                        Transform keyTransform = keycapCollider.transform;
 
                         keyTransform.position =
                             ourTransform.position +
                             keyTransform.TransformDirection(new Vector3(0, -colliderRadius)) +
-                            keyTransform.TransformVector(new Vector3(0, -keyCollider.Offset, 0));
+                            keyTransform.TransformVector(new Vector3(0, -keycapCollider.Offset, 0));
                         keyTransform.localPosition = new Vector3(0, keyTransform.localPosition.y, 0);
 
                         hitKeycap = true;

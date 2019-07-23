@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class KeyCollider : MonoBehaviour
+public class KeycapCollider : MonoBehaviour
 {
 	public float Offset;
 
