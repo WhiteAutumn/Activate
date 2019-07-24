@@ -24,19 +24,13 @@ public class KeyboardLayoutEditor : Editor
 		using (EditorGUI.ChangeCheckScope check = new EditorGUI.ChangeCheckScope())
 		{
 			//Create new style for large sized labels based of normal label style
-			GUIStyle styleLargeLabel = new GUIStyle(GUI.skin.GetStyle("label"));
-			styleLargeLabel.fontSize = 15;
-			
+			GUIStyle styleLargeLabel = new GUIStyle(GUI.skin.GetStyle("label")) {fontSize = 15};
 			//Create new style for medium sized labels based of normal label style
-			GUIStyle styleMediumLabel = new GUIStyle(GUI.skin.GetStyle("label"));
-			styleMediumLabel.fontSize = 12;
-			
+			GUIStyle styleMediumLabel = new GUIStyle(GUI.skin.GetStyle("label")) {fontSize = 12};
 			//Create new style for large sized foldouts based of normal foldout style
-			GUIStyle styleLargeFoldout = new GUIStyle(GUI.skin.GetStyle("foldout"));
-			styleLargeFoldout.fontSize = 15;
-			
-			
+			GUIStyle styleLargeFoldout = new GUIStyle(GUI.skin.GetStyle("foldout")) {fontSize = 15};
 
+			
 			//Draw field for changing key distance
 			EditorGUILayout.LabelField("Key Distance", styleLargeLabel, GUILayout.Height(20));
 			GUILayout.Space(5);
@@ -67,8 +61,7 @@ public class KeyboardLayoutEditor : Editor
 			{
 				layout.rows.RemoveAt(layout.rows.Count - 1);
 			}
-			
-			
+
 
 			//For each row, draw row editor
 			for (int i = 0; i < layout.rowCount; i++)
@@ -116,6 +109,7 @@ public class KeyboardLayoutEditor : Editor
 						row.keys.RemoveAt(row.keys.Count - 1);
 					}
 
+					//For each key, draw object field
 					for (int j = 0; j < row.keyCount; j++)
 					{
 						row.keys[j] = (GameObject) EditorGUILayout.ObjectField("Key " + (j + 1), row.keys[j], typeof(GameObject), false);

@@ -19,9 +19,9 @@ MonoBehaviour:
     offset: 0
     keyCount: 3
     keys:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 3445570131456383465, guid: 0dbec30a9f3c66c4791cdee2e00b81d9, type: 3}
+    - {fileID: 3445570131456383465, guid: f57fa60a7f368d645a347348c99c2ed8, type: 3}
+    - {fileID: 3445570131456383465, guid: d281ee3b37d305f4e97c7f271ca40f88, type: 3}
   - foldout: 0
     offset: 0
     keyCount: 1

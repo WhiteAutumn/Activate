@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Scriptable object for storing keyboard layouts
+/// </summary>
 [CreateAssetMenu]
 public class KeyboardLayout : ScriptableObject
 {
@@ -13,6 +16,7 @@ public class KeyboardLayout : ScriptableObject
 	public class Row
 	{
 		public bool foldout;
+		
 		public float offset;
 		public int keyCount = 1;
 		public List<GameObject> keys = new List<GameObject>();

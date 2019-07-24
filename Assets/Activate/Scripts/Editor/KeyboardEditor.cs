@@ -19,22 +19,22 @@ public class KeyboardEditor : Editor
 		//Draw default inspector
 		base.OnInspectorGUI();
 
-		//If a layout has been designed, draw its editor
+		//If a layout has been assigned, draw its editor
 		if (keyboard.KeyboardLayout != null)
 		{
-			//Change label font size
-			GUIStyle style = GUI.skin.GetStyle("label");
-			style.fontSize = 16;
-			
+			//Create new style for large sized labels based of normal label style
+			GUIStyle styleLargeLabel = new GUIStyle(GUI.skin.GetStyle("label")) {fontSize = 15};
+
 			//Draw label
 			GUILayout.Space(15);
-			GUILayout.Label("Layout");
+			EditorGUILayout.LabelField("Layout", styleLargeLabel, GUILayout.Height(20));
 			
 			//Draw separator
 			EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
 			using (EditorGUI.ChangeCheckScope check = new EditorGUI.ChangeCheckScope())
 			{
+				//Draw layout editor
 				Editor editor = CreateEditor(keyboard.KeyboardLayout);
 				EditorGUI.indentLevel++;
 				editor.OnInspectorGUI();
