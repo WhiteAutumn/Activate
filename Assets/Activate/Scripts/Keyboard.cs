@@ -11,6 +11,6 @@ public class Keyboard : MonoBehaviour, IPassiveKeyListener
 
 	public void OnValidate()
 	{
-		Debug.Log("ON VALIDATE!");
+		
 	}
 }

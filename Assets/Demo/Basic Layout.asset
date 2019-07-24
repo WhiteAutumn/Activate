@@ -13,17 +13,22 @@ MonoBehaviour:
   m_Name: Basic Layout
   m_EditorClassIdentifier: 
   distance: 0.5
-  rowCount: 4
+  rowCount: 3
   rows:
+  - foldout: 1
+    offset: 0
+    keyCount: 3
+    keys:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - foldout: 0
     offset: 0
-    keys: []
+    keyCount: 1
+    keys:
+    - {fileID: 0}
   - foldout: 0
     offset: 0
-    keys: []
-  - foldout: 0
-    offset: 0
-    keys: []
-  - foldout: 0
-    offset: 0
-    keys: []
+    keyCount: 1
+    keys:
+    - {fileID: 0}

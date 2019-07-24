@@ -14,6 +14,7 @@ public class KeyboardLayout : ScriptableObject
 	{
 		public bool foldout;
 		public float offset;
+		public int keyCount = 1;
 		public List<GameObject> keys = new List<GameObject>();
 	}
 }
