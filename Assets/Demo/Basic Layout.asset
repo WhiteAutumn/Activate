@@ -13,17 +13,43 @@ MonoBehaviour:
   m_Name: Basic Layout
   m_EditorClassIdentifier: 
   distance: 0.25
-  rowCount: 2
+  rowCount: 3
   rows:
-  - foldout: 1
+  - foldout: 0
     offset: 0
-    keyCount: 3
+    keyCount: 10
     keys:
-    - {fileID: 3445570131456383465, guid: 0dbec30a9f3c66c4791cdee2e00b81d9, type: 3}
-    - {fileID: 3445570131456383465, guid: f57fa60a7f368d645a347348c99c2ed8, type: 3}
-    - {fileID: 3445570131456383465, guid: d281ee3b37d305f4e97c7f271ca40f88, type: 3}
-  - foldout: 1
+    - {fileID: 3445570131456383465, guid: 6f7af39053b95b24d94ebe5ea73770b2, type: 3}
+    - {fileID: 3445570131456383465, guid: ed04fec5095c1534097d3b5df4343ae1, type: 3}
+    - {fileID: 3445570131456383465, guid: c69f086633df7a6478962db23eab0ef9, type: 3}
+    - {fileID: 3445570131456383465, guid: 6f2e2834a8406b94eb49c771907e4714, type: 3}
+    - {fileID: 3445570131456383465, guid: dff9e6c311befa44893d8c35722d7ce6, type: 3}
+    - {fileID: 3445570131456383465, guid: ab667e9cbea31a549a978dd05011845d, type: 3}
+    - {fileID: 3445570131456383465, guid: cc0f3d6dc328afb4aa05b810c2d2ee81, type: 3}
+    - {fileID: 3445570131456383465, guid: 47bd413bd524a9947a5008ec2b769c34, type: 3}
+    - {fileID: 3445570131456383465, guid: 25841c4df3e7fd246b244ba7bbcf6337, type: 3}
+    - {fileID: 3445570131456383465, guid: 1393c0f6feb0b56429ebc85ebc3d7a94, type: 3}
+  - foldout: 0
     offset: 0.5
-    keyCount: 1
+    keyCount: 9
     keys:
     - {fileID: 3445570131456383465, guid: 0dbec30a9f3c66c4791cdee2e00b81d9, type: 3}
+    - {fileID: 3445570131456383465, guid: 4447a2688064e9c4dba5e87e27bed79f, type: 3}
+    - {fileID: 3445570131456383465, guid: c116b8379070355449fe32f07103d841, type: 3}
+    - {fileID: 3445570131456383465, guid: cdf15f3aa5e6a9549be04b165f0f6163, type: 3}
+    - {fileID: 3445570131456383465, guid: fc5ed87ed388a974ebccd3753ef37e89, type: 3}
+    - {fileID: 3445570131456383465, guid: e14673be96fc07145b47611e15a63d30, type: 3}
+    - {fileID: 3445570131456383465, guid: 6305f1364128c92438bd8005d1f0697e, type: 3}
+    - {fileID: 3445570131456383465, guid: aa648f6c854bba642939ccf7046025ba, type: 3}
+    - {fileID: 3445570131456383465, guid: 181171b7e9509d14db46f5f3b5a09e01, type: 3}
+  - foldout: 1
+    offset: 1
+    keyCount: 7
+    keys:
+    - {fileID: 3445570131456383465, guid: 818498ef3c7ad3144be35ddfd628cc6f, type: 3}
+    - {fileID: 3445570131456383465, guid: 5374c8eaee5267646bcd29fb03bad4e5, type: 3}
+    - {fileID: 3445570131456383465, guid: d281ee3b37d305f4e97c7f271ca40f88, type: 3}
+    - {fileID: 3445570131456383465, guid: f06683605fec6934cb8b6d520a5a759a, type: 3}
+    - {fileID: 3445570131456383465, guid: f57fa60a7f368d645a347348c99c2ed8, type: 3}
+    - {fileID: 3445570131456383465, guid: 3e42d8132b8665e42b3c563cd178b99d, type: 3}
+    - {fileID: 3445570131456383465, guid: 97e6adbe0a08bec43aea80e1742960fe, type: 3}

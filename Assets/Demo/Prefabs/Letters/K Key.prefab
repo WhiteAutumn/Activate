@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2964524322009358304, guid: d9f70c5831511fc4b8c1b09d6b9f904e,
         type: 3}
       propertyPath: m_Name
-      value: B Key
+      value: K Key
       objectReference: {fileID: 0}
     - target: {fileID: 5028875256238085987, guid: d9f70c5831511fc4b8c1b09d6b9f904e,
         type: 3}
@@ -70,12 +70,12 @@ PrefabInstance:
     - target: {fileID: 1390531508292621217, guid: d9f70c5831511fc4b8c1b09d6b9f904e,
         type: 3}
       propertyPath: Signal
-      value: b
+      value: k
       objectReference: {fileID: 0}
     - target: {fileID: 3360004609463953747, guid: d9f70c5831511fc4b8c1b09d6b9f904e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e3ceff5183a627441a76ef7feeea503c, type: 2}
+      objectReference: {fileID: 2100000, guid: 174246f768eada84f8b5a6e0daf3fe88, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9f70c5831511fc4b8c1b09d6b9f904e, type: 3}

@@ -1,20 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Keyboard : MonoBehaviour, IPassiveKeyListener
 {
 	public KeyboardLayout KeyboardLayout;
-	[SerializeField] List<ManagedKey> managedKeys = new List<ManagedKey>();
+	public List<GameObject> KeyboardListeners;
+	
+	[SerializeField, HideInInspector] List<ManagedKey> managedKeys = new List<ManagedKey>();
+	List<IKeyboardListener> listeners = new List<IKeyboardListener>();
+
+	void OnValidate()
+	{
+		listeners = new List<IKeyboardListener>();
+
+		foreach (GameObject listener in KeyboardListeners)
+		{
+			if (listener != null)
+			{
+				foreach (Component component in listener.GetComponents<Component>())
+				{
+					if (component is IKeyboardListener keyboardListener)
+					{
+						listeners.Add(keyboardListener);
+					}
+				}
+			}
+		}
+	}
 
 	public void OnKeyDown(GameObject source, string signal)
 	{
-		
+		foreach (IKeyboardListener listener in listeners)
+		{
+			listener.OnLetterWritten(signal);
+		}
 	}
 
-	public void OnValidate()
+	public void UpdateKeys()
 	{
+#if UNITY_EDITOR
 		List<ManagedKey> removeStack = new List<ManagedKey>(managedKeys);
 		
 		if (KeyboardLayout != null)
@@ -53,71 +82,16 @@ public class Keyboard : MonoBehaviour, IPassiveKeyListener
 
 		foreach (ManagedKey managedKey in removeStack)
 		{
-			DestroyImmediate(managedKey.key);
-			managedKeys.Remove(managedKey);
-		}
-		
-		/*
-		foreach (ManagedKey managedKey in managedKeys)
-		{
-			managedKey.removed = true;
-		}
-
-		if (KeyboardLayout != null)
-		{
-			for (int i = 0; i < KeyboardLayout.rowCount; i++)
-			{
-				KeyboardLayout.Row row = KeyboardLayout.rows[i];
-
-				for (int j = 0; j < row.keys.Count; j++)
-				{
-					GameObject prefab = row.keys[j];
-
-					if (prefab != null)
-					{
-						GameObject key = null;
-						for (int k = 0; k < managedKeys.Count; k++)
-						{
-							if (managedKeys[k].sourcePrefab == prefab)
-							{
-								managedKeys[k].removed = false;
-								key = managedKeys[k].key;
-							}
-						}
-						if (key == null)
-						{
-							key = (GameObject) PrefabUtility.InstantiatePrefab(prefab, transform);
-							key.GetComponent<Key>().KeyListeners.Add(gameObject);
-							managedKeys.Add(new ManagedKey(key, prefab));
-						}
-						
-						key.transform.localPosition = new Vector3(KeyboardLayout.distance * j + KeyboardLayout.distance * row.offset, 0, -KeyboardLayout.distance * i);
-					}
-				}
-			}
-		}
-		
-		List<ManagedKey> shouldRemove = new List<ManagedKey>();
-		foreach (ManagedKey managedKey in managedKeys)
-		{
-			if (managedKey.removed)
-			{
+			if (managedKey.key != null)
 				DestroyImmediate(managedKey.key);
-				shouldRemove.Add(managedKey);
-			}
-		}
-
-		foreach (ManagedKey managedKey in shouldRemove)
-		{
+			
 			managedKeys.Remove(managedKey);
 		}
-		*/
+#endif
 	}
-	
-	
 
 	[Serializable]
-	class ManagedKey
+	public class ManagedKey
 	{
 		public GameObject key;
 		public GameObject sourcePrefab;
