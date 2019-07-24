@@ -1,18 +1,18 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyboardLayout : MonoBehaviour
+[CreateAssetMenu]
+public class KeyboardLayout : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public float distance = 0.5f;
+	public int rowCount = 1;
+	public List<Row> rows = new List<Row>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[Serializable]
+	public class Row
+	{
+		public float offset;
+		public List<GameObject> keys = new List<GameObject>();
+	}
 }
