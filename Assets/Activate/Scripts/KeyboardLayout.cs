@@ -12,6 +12,7 @@ public class KeyboardLayout : ScriptableObject
 	[Serializable]
 	public class Row
 	{
+		public bool foldout;
 		public float offset;
 		public List<GameObject> keys = new List<GameObject>();
 	}
