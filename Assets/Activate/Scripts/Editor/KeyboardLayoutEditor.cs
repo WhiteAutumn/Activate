@@ -31,6 +31,7 @@ public class KeyboardLayoutEditor : Editor
 			GUIStyle styleLargeFoldout = new GUIStyle(GUI.skin.GetStyle("foldout")) {fontSize = 15};
 
 			
+			
 			//Draw field for changing key distance
 			EditorGUILayout.LabelField("Key Distance", styleLargeLabel, GUILayout.Height(20));
 			GUILayout.Space(5);
@@ -62,6 +63,7 @@ public class KeyboardLayoutEditor : Editor
 				layout.rows.RemoveAt(layout.rows.Count - 1);
 			}
 
+			
 
 			//For each row, draw row editor
 			for (int i = 0; i < layout.rowCount; i++)
@@ -115,6 +117,70 @@ public class KeyboardLayoutEditor : Editor
 						row.keys[j] = (GameObject) EditorGUILayout.ObjectField("Key " + (j + 1), row.keys[j], typeof(GameObject), false);
 						GUILayout.Space(5);
 					}
+					
+					EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+					EditorGUI.indentLevel--;
+				}
+			}
+			
+			
+			
+			//Draw buttons to allow for adjusting special key count
+			EditorGUILayout.LabelField("Special Keys | " + layout.specialKeyCount, styleLargeLabel, GUILayout.Height(20));
+			EditorGUILayout.BeginHorizontal();
+			GUILayout.Space(EditorGUI.indentLevel * 17);
+			if (GUILayout.Button("+", GUILayout.MaxWidth(30), GUILayout.MaxHeight(20)))
+			{
+				layout.specialKeyCount++;
+			}
+			if (GUILayout.Button("-", GUILayout.MaxWidth(30), GUILayout.MaxHeight(20)))
+			{
+				layout.specialKeyCount = Mathf.Max(0, layout.specialKeyCount - 1);
+			}
+			EditorGUILayout.EndHorizontal();
+			GUILayout.Space(10);
+		
+			//Update special key list to comply with updated special key count
+			while (layout.specialKeyCount > layout.SpecialKeys.Count)
+			{
+				layout.SpecialKeys.Add(new KeyboardLayout.SpecialKey());
+			}
+			while (layout.specialKeyCount < layout.SpecialKeys.Count)
+			{
+				layout.SpecialKeys.RemoveAt(layout.SpecialKeys.Count - 1);
+			}
+
+
+
+			//For each special key, draw editor
+			for (int i = 0; i < layout.SpecialKeys.Count; i++)
+			{
+				KeyboardLayout.SpecialKey key = layout.SpecialKeys[i];
+				
+				//Draw foldout
+				EditorGUI.indentLevel++;
+				key.foldout = EditorGUILayout.Foldout(key.foldout, "Key " + (i + 1), true, styleLargeFoldout);
+				GUILayout.Space(15);
+				EditorGUI.indentLevel--;
+
+				if (key.foldout)
+				{
+					EditorGUI.indentLevel++;
+					
+					//Draw field for changing x offset
+					EditorGUILayout.LabelField("Key X", styleMediumLabel, GUILayout.Height(15));
+					GUILayout.Space(5);
+					key.offsetX = EditorGUILayout.FloatField(key.offsetX);
+					GUILayout.Space(10);
+					
+					//Draw field for changing z offset
+					EditorGUILayout.LabelField("Key Z", styleMediumLabel, GUILayout.Height(15));
+					GUILayout.Space(5);
+					key.offsetZ = EditorGUILayout.FloatField(key.offsetZ);
+					GUILayout.Space(10);
+
+					//Draw object field
+					key.key = (GameObject) EditorGUILayout.ObjectField("Key", key.key, typeof(GameObject), false);
 					
 					EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 					EditorGUI.indentLevel--;
