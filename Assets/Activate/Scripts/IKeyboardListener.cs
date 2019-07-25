@@ -1,4 +1,4 @@
 ﻿public interface IKeyboardListener
 {
-	void OnLetterWritten(string letter);
+    void OnLetterWritten(string letter);
 }

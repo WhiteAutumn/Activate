@@ -2,5 +2,5 @@
 
 public interface IPassiveKeyListener
 {
-	void OnKeyDown(GameObject source, string signal);
+    void OnKeyDown(GameObject source, string signal);
 }
