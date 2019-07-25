@@ -11,7 +11,7 @@ public class Keyboard : MonoBehaviour, IPassiveKeyListener
 	public KeyboardLayout KeyboardLayout;
 	public List<GameObject> KeyboardListeners;
 	
-	[SerializeField] List<ManagedKey> managedKeys = new List<ManagedKey>();
+	[SerializeField, HideInInspector] List<ManagedKey> managedKeys = new List<ManagedKey>();
 	List<IKeyboardListener> listeners = new List<IKeyboardListener>();
 
 	void OnValidate()

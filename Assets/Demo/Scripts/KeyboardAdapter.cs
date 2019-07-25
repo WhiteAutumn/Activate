@@ -12,6 +12,17 @@ public class KeyboardAdapter : MonoBehaviour, IKeyboardListener
 
 	public void OnLetterWritten(string letter)
 	{
-		text.text += letter;
+		if (letter == "backspace")
+		{
+			text.text = text.text.Substring(0, text.text.Length - 1);
+		}
+		else if (letter == "enter")
+		{
+			text.text = "";
+		}
+		else
+		{
+			text.text += letter;
+		}
 	}
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 0.25
   rowCount: 3
-  specialKeyCount: 1
+  specialKeyCount: 3
   rows:
   - foldout: 0
     offset: 0
@@ -56,6 +56,14 @@ MonoBehaviour:
     - {fileID: 3445570131456383465, guid: 97e6adbe0a08bec43aea80e1742960fe, type: 3}
   SpecialKeys:
   - foldout: 1
-    offsetX: 0
+    offsetX: 4
+    offsetZ: 3
+    key: {fileID: 3388827066913805977, guid: f0ec1ab440d552e4f97c2947892b56e1, type: 3}
+  - foldout: 1
+    offsetX: 10.5
     offsetZ: 0
-    key: {fileID: 0}
+    key: {fileID: 2964524322009358304, guid: 80bf546cb66f33741b521cf15d1f9cb7, type: 3}
+  - foldout: 1
+    offsetX: 10.5
+    offsetZ: 1.5
+    key: {fileID: 2964524322009358304, guid: 49edd45b1e78d6740ae56a9b184235a6, type: 3}
