@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Scriptable object for storing keyboard layouts
+/// Scriptable object for storing layouts used by <see cref="Keyboard"/>
 /// </summary>
 [CreateAssetMenu]
 public class KeyboardLayout : ScriptableObject

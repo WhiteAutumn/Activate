@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR;
 
+/// <summary>
+/// A demonstration class of how haptic feedback could be implemented using <see cref="IPassiveKeyListener"/> and <see cref="IActiveKeyListener"/>
+/// </summary>
 public class HapticKeyFeedback : MonoBehaviour, IPassiveKeyListener, IActiveKeyListener
 {
     List<GameObject> touchingObjects = new List<GameObject>();
@@ -31,7 +34,7 @@ public class HapticKeyFeedback : MonoBehaviour, IPassiveKeyListener, IActiveKeyL
 
     public void OnKeyUpdate(GameObject source, string signal, float value)
     {
-        
+        //TODO: Implemented dynamic haptic feedback based on how much the key is being pressed down
     }
 
     void OnTriggerEnter(Collider other)

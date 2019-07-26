@@ -2,8 +2,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Custom Editor to allow for editing of keyboard layouts inside the keyboard's editor.
+/// Class <c>KeyboardEditor</c> is a custom editor for <see cref="Keyboard"/> to allow for the editing of <see cref="KeyboardLayout"/> scriptable objects inside of the keyboard editor.
 /// </summary>
+/// TODO: More docs to be written
 [CustomEditor(typeof(Keyboard))]
 public class KeyboardEditor : Editor
 {

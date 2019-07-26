@@ -2,8 +2,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Editor for keyboard layouts
+/// Class <c>KeyboardLayoutEditor</c> is a custom editor for <see cref="KeyboardLayout"/>.
 /// </summary>
+/// TODO: Overlook comments
 [CustomEditor(typeof(KeyboardLayout))]
 public class KeyboardLayoutEditor : Editor
 {

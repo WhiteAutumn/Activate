@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Class <c>KeycapCollisionValidator</c> ensures that fast moving controllers will not clip through keycaps.
+/// This component should be attached the controller game object or a child of the controller game object.
+/// </summary>
+/// TODO: More docs to be written:
 public class KeycapCollisionValidator : MonoBehaviour
 {
     Transform ourTransform;

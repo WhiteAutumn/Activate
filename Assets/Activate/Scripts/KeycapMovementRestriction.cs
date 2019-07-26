@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+/// Ensures that the keycap only moves vertically and does not go above local y 0
+/// </summary>
 public class KeycapMovementRestriction : MonoBehaviour
 {
     Transform ourTransform;

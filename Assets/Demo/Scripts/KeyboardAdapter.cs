@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// A demonstration class of how <see cref="IKeyboardListener"/> could be implemented.
+/// </summary>
 public class KeyboardAdapter : MonoBehaviour, IKeyboardListener
 {
     Text text;
