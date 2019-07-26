@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 /// <summary>
-/// A demonstration class of how <see cref="IKeyboardListener"/> could be implemented.
+/// A demonstration class of how <see cref="IKeyboardListener"/> could be implemented to use the output of a <see cref="Keyboard"/>
 /// </summary>
 public class KeyboardAdapter : MonoBehaviour, IKeyboardListener
 {
