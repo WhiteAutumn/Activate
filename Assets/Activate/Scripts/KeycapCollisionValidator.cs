@@ -4,7 +4,6 @@
 /// Class <c>KeycapCollisionValidator</c> ensures that fast moving controllers will not clip through keycaps.
 /// This component should be attached the controller game object or a child of the controller game object.
 /// </summary>
-/// TODO: More docs to be written:
 public class KeycapCollisionValidator : MonoBehaviour
 {
     Transform ourTransform;
@@ -67,13 +66,13 @@ public class KeycapCollisionValidator : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("keycap"))
                     {
-                        KeycapCollider keycapCollider = hit.collider.gameObject.GetComponent<KeycapCollider>();
+                        Keycap keycapCollider = hit.collider.gameObject.GetComponent<Keycap>();
                         Transform keyTransform = keycapCollider.transform;
 
                         keyTransform.position =
                             ourTransform.position +
                             keyTransform.TransformDirection(new Vector3(0, -colliderRadius)) +
-                            keyTransform.TransformVector(new Vector3(0, -keycapCollider.Offset, 0));
+                            keyTransform.TransformVector(new Vector3(0, -keycapCollider.ColliderValidationOffset, 0));
                         keyTransform.localPosition = new Vector3(0, keyTransform.localPosition.y, 0);
 
                         hitKeycap = true;
