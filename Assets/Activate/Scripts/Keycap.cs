@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary>
-/// TODO
+/// Class <c>Keycap</c> ensures proper movement of the keycap game object and is required for <see cref="KeycapCollisionValidator"/> to function properly.
 /// </summary>
 public class Keycap : MonoBehaviour
 {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Listener for <see cref="Key"/> events.
+/// Interface <c>IActiveKeyListener</c> is used for <see cref="Key"/> events.
 /// Implement this and add the game object to <see cref="Key.KeyListeners"/> to receive events.
 /// </summary>
 public interface IActiveKeyListener

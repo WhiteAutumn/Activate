@@ -4,7 +4,6 @@ using UnityEngine;
 /// <summary>
 /// Class <c>KeyboardEditor</c> is a custom editor for <see cref="Keyboard"/> to allow for the editing of <see cref="KeyboardLayout"/> scriptable objects inside of the keyboard editor.
 /// </summary>
-/// TODO: More docs to be written
 [CustomEditor(typeof(Keyboard))]
 public class KeyboardEditor : Editor
 {
@@ -12,12 +11,13 @@ public class KeyboardEditor : Editor
     
     void OnEnable()
     {
+        //Cache components
         keyboard = (Keyboard) target;
     }
     
     public override void OnInspectorGUI()
     {
-        using (EditorGUI.ChangeCheckScope check = new EditorGUI.ChangeCheckScope())
+        using (var check = new EditorGUI.ChangeCheckScope())
         {
             //Create new style for large sized labels based of normal label style
             GUIStyle styleLargeLabel = new GUIStyle(GUI.skin.GetStyle("label")) {fontSize = 15};
@@ -52,6 +52,7 @@ public class KeyboardEditor : Editor
                     //If changes have been made, trigger OnValidate() in keyboard to update keys
                     if (check.changed)
                     {
+                        keyboard.UpdateListeners();
                         keyboard.UpdateKeys();
                     }
                 }

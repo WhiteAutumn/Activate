@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Listener for <see cref="Keyboard"/> events.
+/// Interface <c>IKeyboardListener</c> is used for <see cref="Keyboard"/> events.
 /// Implement this and add the game object to <see cref="Keyboard.KeyboardListeners"/> to receive events.
 /// </summary>
 public interface IKeyboardListener

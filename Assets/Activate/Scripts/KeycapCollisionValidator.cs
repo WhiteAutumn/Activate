@@ -2,7 +2,9 @@
 
 /// <summary>
 /// Class <c>KeycapCollisionValidator</c> ensures that fast moving controllers will not clip through keycaps.
-/// This component should be attached the controller game object or a child of the controller game object.
+/// This component should be attached the VR controller game object or a child of the controller game object.
+/// This component requires a <see cref="SphereCollider"/>.
+/// <seealso cref="Keycap"/>
 /// </summary>
 public class KeycapCollisionValidator : MonoBehaviour
 {
@@ -14,20 +16,22 @@ public class KeycapCollisionValidator : MonoBehaviour
     float colliderRadius;
     float minimumVelocity;
     
-    void Start()
+    void Awake()
     {
+        //Cache components
         ourTransform = transform;
-        previousPos = ourTransform.position;
         ourCollider = GetComponent<SphereCollider>();
         
+        previousPos = ourTransform.position; 
         colliderOffset = ourCollider.center;
-        float radius = ourCollider.radius;
-
+        
+        //Calculate true radius of sphere collider
+        float trueRadius = ourCollider.radius;
         Transform currentTransform = ourTransform;
         while (true)
         {
             Vector3 localScale = currentTransform.localScale;
-            radius *= Mathf.Max(localScale.x, localScale.y, localScale.z);
+            trueRadius *= Mathf.Max(localScale.x, localScale.y, localScale.z);
 
             if (currentTransform.parent == null) 
                 break;
@@ -35,49 +39,55 @@ public class KeycapCollisionValidator : MonoBehaviour
             currentTransform = currentTransform.parent;
         }
         
-        colliderEdgeOffsets[0] =  new Vector3(radius, 0, 0);
-        colliderEdgeOffsets[1] =  new Vector3(-radius, 0, 0);
-        colliderEdgeOffsets[2] =  new Vector3(0, radius, 0);
-        colliderEdgeOffsets[3] =  new Vector3(0, -radius, 0);
-        colliderEdgeOffsets[4] =  new Vector3(0, 0, radius);
-        colliderEdgeOffsets[5] =  new Vector3(0, 0, -radius);
         
-        colliderRadius = radius;
-        minimumVelocity = radius / 2;
+        colliderEdgeOffsets[0] =  new Vector3(trueRadius, 0, 0);
+        colliderEdgeOffsets[1] =  new Vector3(-trueRadius, 0, 0);
+        colliderEdgeOffsets[2] =  new Vector3(0, trueRadius, 0);
+        colliderEdgeOffsets[3] =  new Vector3(0, -trueRadius, 0);
+        colliderEdgeOffsets[4] =  new Vector3(0, 0, trueRadius);
+        colliderEdgeOffsets[5] =  new Vector3(0, 0, -trueRadius);
+        
+        colliderRadius = trueRadius;
+        minimumVelocity = trueRadius / 2;
     }
     
     void Update()
     {
         float currentVelocity = Vector3.Distance(ourTransform.position, previousPos);
         
+        //If object is moving fast enough to possibly clip through objects
         if (currentVelocity > minimumVelocity)
         {
             Vector3 center = ourTransform.position + colliderOffset;
             Vector3 previousCenter = previousPos + colliderOffset;
 
-            foreach (Vector3 edgeOffset in colliderEdgeOffsets)
+            //For each edge, draw a ray between previous edge pos and current edge pos
+            foreach (var edgeOffset in colliderEdgeOffsets)
             {
                 Vector3 edge = center + edgeOffset;
                 Vector3 previousEdge = previousCenter + edgeOffset;
                 
                 bool hitKeycap = false;
                 RaycastHit[] hits = Physics.RaycastAll(previousEdge, edge - previousEdge, Vector3.Distance(edge, previousEdge));
-                foreach (RaycastHit hit in hits)
+                foreach (var hit in hits)
                 {
-                    if (hit.collider.CompareTag("keycap"))
-                    {
-                        Keycap keycapCollider = hit.collider.gameObject.GetComponent<Keycap>();
-                        Transform keyTransform = keycapCollider.transform;
+                    //Find keycap component
+                    Keycap keycap = hit.collider.GetComponent<Keycap>();
+                    
+                    if (keycap == null)
+                        continue;
+                    
+                    Transform keycapTransform = keycap.transform;
 
-                        keyTransform.position =
-                            ourTransform.position +
-                            keyTransform.TransformDirection(new Vector3(0, -colliderRadius)) +
-                            keyTransform.TransformVector(new Vector3(0, -keycapCollider.ColliderValidationOffset, 0));
-                        keyTransform.localPosition = new Vector3(0, keyTransform.localPosition.y, 0);
+                    //Update keycap position
+                    keycapTransform.position =
+                        ourTransform.position +
+                        keycapTransform.TransformDirection(new Vector3(0, -colliderRadius)) +
+                        keycapTransform.TransformVector(new Vector3(0, -keycap.ColliderValidationOffset, 0));
+                    keycapTransform.localPosition = new Vector3(0, keycapTransform.localPosition.y, 0);
 
-                        hitKeycap = true;
-                        break;
-                    }
+                    hitKeycap = true;
+                    break;
                 }
 
                 if (hitKeycap)

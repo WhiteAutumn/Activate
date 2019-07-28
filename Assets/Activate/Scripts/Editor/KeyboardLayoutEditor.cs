@@ -4,7 +4,6 @@ using UnityEngine;
 /// <summary>
 /// Class <c>KeyboardLayoutEditor</c> is a custom editor for <see cref="KeyboardLayout"/>.
 /// </summary>
-/// TODO: Overlook comments
 [CustomEditor(typeof(KeyboardLayout))]
 public class KeyboardLayoutEditor : Editor
 {
@@ -12,17 +11,19 @@ public class KeyboardLayoutEditor : Editor
     
     void OnEnable()
     {
+        //Cache components
         layout = (KeyboardLayout) target;
     }
 
     void OnDestroy()
     {
+        //Save unsaved changes
         AssetDatabase.SaveAssets();
     }
 
     public override void OnInspectorGUI()
     {
-        using (EditorGUI.ChangeCheckScope check = new EditorGUI.ChangeCheckScope())
+        using (var check = new EditorGUI.ChangeCheckScope())
         {
             //Create new style for large sized labels based of normal label style
             GUIStyle styleLargeLabel = new GUIStyle(GUI.skin.GetStyle("label")) {fontSize = 15};

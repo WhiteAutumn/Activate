@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 /// <summary>
-/// A demonstration class of how <see cref="IKeyboardListener"/> could be implemented to use the output of a <see cref="Keyboard"/>
+/// Class <c>KeyboardAdapter</c> demonstrates how the output of a <see cref="Keyboard"/> can be accessed by implementing <see cref="IKeyboardListener"/>.
 /// </summary>
 public class KeyboardAdapter : MonoBehaviour, IKeyboardListener
 {
@@ -10,22 +10,23 @@ public class KeyboardAdapter : MonoBehaviour, IKeyboardListener
     
     void Awake()
     {
+        //Cache components
         text = GetComponent<Text>();
     }
 
     public void OnLetterWritten(string letter)
     {
-        if (letter == "backspace")
+        switch (letter)
         {
-            text.text = text.text.Substring(0, text.text.Length - 1);
-        }
-        else if (letter == "enter")
-        {
-            text.text = "";
-        }
-        else
-        {
-            text.text += letter;
+            case "backspace":
+                text.text = text.text.Substring(0, text.text.Length - 1);
+                break;
+            case "enter":
+                text.text = "";
+                break;
+            default:
+                text.text += letter;
+                break;
         }
     }
 }

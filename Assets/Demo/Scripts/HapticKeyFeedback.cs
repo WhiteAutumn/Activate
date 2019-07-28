@@ -4,46 +4,60 @@ using UnityEngine.SpatialTracking;
 using UnityEngine.XR;
 
 /// <summary>
-/// A demonstration class of how haptic feedback could be implemented using <see cref="IPassiveKeyListener"/> and <see cref="IActiveKeyListener"/>
+/// Class <c>HapticKeyFeedback</c> demonstrates how haptic feedback could be implemented using <see cref="IPassiveKeyListener"/>.
 /// </summary>
-public class HapticKeyFeedback : MonoBehaviour, IPassiveKeyListener, IActiveKeyListener
+public class HapticKeyFeedback : MonoBehaviour, IPassiveKeyListener
 {
-    List<GameObject> touchingObjects = new List<GameObject>();
-    
+    GameObject ourKey;
+    readonly List<GameObject> closeObjects = new List<GameObject>();
+
+    void Awake()
+    {
+        //Cache variables
+        ourKey = transform.parent.parent.gameObject;
+    }
+
     public void OnKeyDown(GameObject source, string signal)
     {
-        if (source == transform.parent.parent.gameObject)
+        //Check if key event came from this key
+        if (source != ourKey)
+            return;
+        
+        foreach (var closeObject in closeObjects)
         {
-            foreach (GameObject touchingObject in touchingObjects)
+            //Attempt to get TrackedPoseDriver
+            Transform parent = closeObject.transform.parent;
+            if (parent == null)
+                continue;
+            
+            parent = parent.parent;
+            if (parent == null)
+                continue;
+
+            TrackedPoseDriver driver = parent.gameObject.GetComponent<TrackedPoseDriver>();
+            if (driver == null)
+                continue;
+            
+            
+            //Send haptic feedback
+            if (driver.poseSource == TrackedPoseDriver.TrackedPose.RightPose)
             {
-                TrackedPoseDriver driver = touchingObject.transform.parent.parent.gameObject.GetComponent<TrackedPoseDriver>();
-                if (driver != null)
-                {
-                    if (driver.poseSource == TrackedPoseDriver.TrackedPose.RightPose)
-                    {
-                        InputDevices.GetDeviceAtXRNode(XRNode.RightHand).SendHapticImpulse(0, 0.5f, 1);
-                    }
-                    else if (driver.poseSource == TrackedPoseDriver.TrackedPose.LeftPose)
-                    {
-                        InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).SendHapticImpulse(0, 0.5f, 1);
-                    }
-                }
+                InputDevices.GetDeviceAtXRNode(XRNode.RightHand).SendHapticImpulse(0, 0.5f, 1);
+            }
+            else if (driver.poseSource == TrackedPoseDriver.TrackedPose.LeftPose)
+            {
+                InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).SendHapticImpulse(0, 0.5f, 1);
             }
         }
     }
-
-    public void OnKeyUpdate(GameObject source, string signal, float value)
-    {
-        //TODO: Implemented dynamic haptic feedback based on how much the key is being pressed down
-    }
-
+    
+    //Maintain a list of objects in range of key
     void OnTriggerEnter(Collider other)
     {
-        touchingObjects.Add(other.gameObject);
+        closeObjects.Add(other.gameObject);
     }
-
     void OnTriggerExit(Collider other)
     {
-        touchingObjects.Remove(other.gameObject);
+        closeObjects.Remove(other.gameObject);
     }
 }
