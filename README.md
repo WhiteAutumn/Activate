@@ -1,6 +1,6 @@
 # Activate
 
-Activate is a proof of concept VR keyboard for Unity.
+Activate is a proof of concept VR keyboard for Unity 2018.4.
 
 ### Typing demonstration
 ![Animated demo](demonormal.gif)
