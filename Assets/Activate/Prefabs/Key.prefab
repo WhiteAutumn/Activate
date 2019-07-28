@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 5226437901307635548}
   m_Layer: 0
   m_Name: Keycap
-  m_TagString: keycap
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
